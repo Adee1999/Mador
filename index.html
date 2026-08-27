@@ -343,8 +343,7 @@
             <div class="fade-in" style="font-size: 2.8rem;">Мадияр</div>
             <p>МЕН</p>
             <div class="fade-in" style="font-size: 2.8rem;">Әсем</div>
-            <p>КЕЛІНІМІЗДІҢ ҮЙЛЕНУ ТОЙЫ ЖӘНЕ ҰЛЫМЫЗ</p>
-            <div class="fade-in" style="font-size: 2.8rem;">Ашасқардың</div>
+            <p>КЕЛІНІМІЗДІҢ ҮЙЛЕНУ ТОЙЫ ЖӘНЕ</p>
             <p>БЕТАШАРҒА АРНАЛҒАН АҚ ДАСТАРХАНЫМЫЗДЫҢ ҚАДІРЛІ ҚОНАҒЫ БОЛУҒА ШАҚЫРАМЫЗ!</p>
 
             <div class="divider"><span>♡</span></div>
@@ -356,22 +355,25 @@
         <!-- Уақыты мен Таймер -->
         <div class="section fade-in">
             <p class="text-title">ТОЙ САЛТАНАТЫ:</p>
-            <div class="fade-in" style="font-size: 2.2rem;">13 Қыркүйек 2026 ж.</div>
+            <div class="fade-in" style="font-size: 2.2rem;">14 Қазан 2026 ж.</div>
 
             <table class="calendar fade-in">
                 <thead>
                     <tr><th>ДС</th><th>СС</th><th>СР</th><th>БС</th><th>ЖМ</th><th>СБ</th><th>ЖБ</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
-                    <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td class="selected-day">13</td></tr>
-                    <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
-                    <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
-                    <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                    <tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+                    <tr><td>12</td><td>13</td><td class="selected-day">14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                    <tr><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+                    <tr><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td></tr>
                 </tbody>
             </table>
 
-            <p class="text-title" style="margin-top: 20px;">БАСТАЛУ УАҚЫТЫ:</p>
+            <p class="text-title" style="margin-top: 20px;">БЕТАШАР БАСТАЛУ УАҚЫТЫ:</p>
+            <h2 style="font-size: 2rem; margin: 10px 0;">18:00</h2>
+
+            <p class="text-title" style="margin-top: 20px;">ТОЙ БАСТАЛУ УАҚЫТЫ:</p>
             <h2 style="font-size: 2rem; margin: 10px 0;">20:00</h2>
 
             <div class="cursive" style="margin-top: 20px; font-size: 2rem;">Той салтанатына дейін:</div>
@@ -389,14 +391,13 @@
             <img src="flower.png" alt="Гүл" class="flower-center">
 
             <p class="text-title">МЕКЕН-ЖАЙЫМЫЗ:</p>
-            <p style="margin: 10px 0; font-weight: 600;">ЖЕТІСАЙ ҚАЛАСЫ, ЯССАУИ КӨШЕСІ</p>
-            <div class="fade-in" style="font-size: 3rem;">"Қазыбек"</div>
+            <p style="margin: 10px 0; font-weight: 600;">ЖЕТІСАЙ АУДАНЫ, АСЫҚАТА КЕНТІ</p>
+            <div class="fade-in" style="font-size: 3rem;">"ШЫНАР"</div>
             <p class="text-title">ТОЙХАНАСЫ</p>
 
             <p style="font-size: 0.9rem; margin-top: 15px;">2GIS картасы арқылы маршрут сызу:</p>
-            <a href="https://2gis.kz" target="_blank" class="btn-gis fade-in">2GIS</a>
+            <a href="https://go.2gis.com/g8PRo" target="_blank" class="btn-gis fade-in">2GIS</a>
 
-            <div class="cursive" style="margin-top: 40px; font-size: 2.8rem;">Дресс-код</div>
             <div class="dresscode-grid fade-in">
                 <div class="dresscode-card">
                     <div class="dresscode-icon">👔</div>
@@ -458,7 +459,7 @@
             music.paused ? music.play() : music.pause();
         }
 
-        const targetDate = new Date('September 13, 2026 19:00:00').getTime();
+        const targetDate = new Date('October 14, 2026 20:00:00').getTime();
         function updateTimer() {
             const diff = targetDate - new Date().getTime();
             if (diff > 0) {
