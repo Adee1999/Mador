@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тойға шақыру - Руслан & Бағыра</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c48b8b;
+            --text-color: #2b2b2b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--text-color);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+            
+            /* Жібек мата фоны */
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #f7f5f5;
+        }
+
+        .wrapper {
+            max-width: 450px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+            color: var(--primary-color);
+            font-size: 3.5rem;
+        }
+
+        .section {
+            padding: 25px 20px;
+            position: relative;
+        }
+
+        /* БАСТЫ БӨЛІМ: СУРЕТ + ГРАДИЕНТ + ЕКІ ЖАҚТАҒЫ ГҮЛДЕР */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Суреттің төменгі жағын мөлдір ететін градиент */
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+        }
+
+        .flower-left {
+            position: absolute;
+            width: 180px;
+            height: auto;
+            rotate: 30deg;
+            bottom: -20px;
+            z-index: 4;
+            pointer-events: none;
+        }
+        .flower-right {
+            position: absolute;
+            width: 180px;
+            height: auto;
+            rotate: -30deg;
+            bottom: -20px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .flower-left {
+            left: -20px;
+        }
+
+        .flower-right {
+            right: -20px;
+            transform: scaleX(-1);
+        }
+
+        /* МУЗЫКА БАТЫРМАСЫ */
+        .music-wrapper {
+            position: relative;
+            z-index: 5;
+            margin-top: -30px;
+        }
+
+        .music-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid #666;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 6px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #444;
+        }
+
+        .music-title {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #555;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* МОНОГРАММА */
+        .monogram-clean {
+            width: 400px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: 20px;
+            color: #1a1a1a;
+            margin-left: 0px;
+            margin-bottom: 5px;
+        }
+
+        .flower-center {
+            width: 100px;
+            height: auto;
+            margin: 10px auto 20px;
+            display: block;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #b5a4a4;
+        }
+
+        .divider span {
+            padding: 0 10px;
+            color: var(--primary-color);
+        }
+
+        .text-title {
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.05rem;
+        }
+
+        .calendar {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .calendar th, .calendar td {
+            padding: 8px;
+            font-size: 0.95rem;
+        }
+
+        .calendar .selected-day {
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .timer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-circle {
+            width: 58px;
+            height: 58px;
+            border: 1.5px solid #333;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .btn-gis {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(196, 139, 139, 0.4);
+        }
+
+        .dresscode-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .dresscode-card {
+            width: 45%;
+        }
+
+        .dresscode-icon {
+            width: 65px;
+            height: 65px;
+            border: 1px solid #333;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #555;
+            border-radius: 25px;
+            outline: none;
+            text-align: center;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .radio-group {
+            text-align: left;
+            margin: 15px 0;
+        }
+
+        .radio-option {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- БАСТЫ БӨЛІМ -->
+        <div class="hero-section fade-in">
+            <div class="hero-container">
+                <img src="main-couple.jpg" alt="Руслан & Бағыра" class="hero-img">
+                <img src="flower.png" alt="Гүл сол" class="flower-left">
+                <img src="flower.png" alt="Гүл оң" class="flower-right">
+            </div>
+
+            <div class="music-wrapper">
+                <button class="music-btn" onclick="toggleMusic()">🎵</button>
+                <p class="music-title">МУЗЫКА</p>
+                <audio id="bgMusic" loop>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <img class="monogram-clean" src="1.png" alt="Монограмма"></img>
+        </div>
+
+        <!-- Шақыру тексті -->
+        <div class="section fade-in">
+            <p class="text-title">ҚҰРМЕТТІ АҒАЙЫН-ТУЫС, БАУЫРЛАР, ҚҰДА-ЖЕКЖАТ, НАҒАШЫ-ЖИЕН, БӨЛЕЛЕР, ӘРІПТЕСТЕР, ДОС-ЖАРАҢДАР ЖӘНЕ КӨРШІЛЕР!</p>
+            
+            <div class="divider"><span>♡</span></div>
+
+            <p>СІЗДЕРДІ ҰЛЫМЫЗ</p>
+            <div class="fade-in" style="font-size: 2.8rem;">Руслан</div>
+            <p>МЕН</p>
+            <div class="fade-in" style="font-size: 2.8rem;">Бағыра</div>
+            <p>КЕЛІНІМІЗДІҢ ҮЙЛЕНУ ТОЙЫ ЖӘНЕ ҰЛЫМЫЗ</p>
+            <div class="fade-in" style="font-size: 2.8rem;">Ашасқардың</div>
+            <p>БЕТАШАРҒА АРНАЛҒАН АҚ ДАСТАРХАНЫМЫЗДЫҢ ҚАДІРЛІ ҚОНАҒЫ БОЛУҒА ШАҚЫРАМЫЗ!</p>
+
+            <div class="divider"><span>♡</span></div>
+
+            <p class="text-title" style="margin-top: 15px;">ТОЙ ИЕЛЕРІ:</p>
+            <div class="fade-in" style="font-size: 2.2rem;">Абдрахманов Даурен отбасы</div>
+        </div>
+
+        <!-- Уақыты мен Таймер -->
+        <div class="section fade-in">
+            <p class="text-title">ТОЙ САЛТАНАТЫ:</p>
+            <div class="fade-in" style="font-size: 2.2rem;">13 Қыркүйек 2026 ж.</div>
+
+            <table class="calendar fade-in">
+                <thead>
+                    <tr><th>ДС</th><th>СС</th><th>СР</th><th>БС</th><th>ЖМ</th><th>СБ</th><th>ЖБ</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+                    <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td class="selected-day">13</td></tr>
+                    <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+                    <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+                    <tr><td>28</td><td>29</td><td>30</td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+            <p class="text-title" style="margin-top: 20px;">БАСТАЛУ УАҚЫТЫ:</p>
+            <h2 style="font-size: 2rem; margin: 10px 0;">20:00</h2>
+
+            <div class="cursive" style="margin-top: 20px; font-size: 2rem;">Той салтанатына дейін:</div>
+
+            <div class="timer fade-in">
+                <div class="timer-item"><div class="timer-circle" id="days">00</div><span class="timer-label">күн</span></div>
+                <div class="timer-item"><div class="timer-circle" id="hours">00</div><span class="timer-label">сағат</span></div>
+                <div class="timer-item"><div class="timer-circle" id="minutes">00</div><span class="timer-label">минут</span></div>
+                <div class="timer-item"><div class="timer-circle" id="seconds">00</div><span class="timer-label">секунд</span></div>
+            </div>
+        </div>
+
+        <!-- Мекен-жайы мен Дресс-код -->
+        <div class="section fade-in">
+            <img src="flower.png" alt="Гүл" class="flower-center">
+
+            <p class="text-title">МЕКЕН-ЖАЙЫМЫЗ:</p>
+            <p style="margin: 10px 0; font-weight: 600;">ЖЕТІСАЙ ҚАЛАСЫ, ЯССАУИ КӨШЕСІ</p>
+            <div class="fade-in" style="font-size: 3rem;">"Қазыбек"</div>
+            <p class="text-title">ТОЙХАНАСЫ</p>
+
+            <p style="font-size: 0.9rem; margin-top: 15px;">2GIS картасы арқылы маршрут сызу:</p>
+            <a href="https://2gis.kz" target="_blank" class="btn-gis fade-in">2GIS</a>
+
+            <div class="cursive" style="margin-top: 40px; font-size: 2.8rem;">Дресс-код</div>
+            <div class="dresscode-grid fade-in">
+                <div class="dresscode-card">
+                    <div class="dresscode-icon">👔</div>
+                    <p class="text-title" style="font-size: 0.8rem;">ЕРЛЕР ҚАУЫМЫ:</p>
+                    <p style="font-size: 0.85rem;">Классикалық костюм</p>
+                </div>
+                <div class="dresscode-card">
+                    <div class="dresscode-icon">👗</div>
+                    <p class="text-title" style="font-size: 0.8rem;">ӘЙЕЛДЕР ҚАУЫМЫ:</p>
+                    <p style="font-size: 0.85rem;">Кешкі көйлек</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Форма -->
+        <div class="section fade-in">
+            <p class="text-title">ТОЙҒА КЕЛЕТІНІҢІЗДІ РАСТАУЫҢЫЗДЫ СҰРАЙМЫЗ</p>
+            
+            <form id="rsvpForm" style="margin-top: 20px;">
+                <input type="text" class="form-input" placeholder="Есіміңіз" required>
+                <p style="font-size: 0.85rem; margin-top: 5px;">Жұбайыңызбен келсеңіз, оның есімі</p>
+                <input type="text" class="form-input" placeholder="Жұбайыңыздың есімі">
+
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="yes" checked> Келемін
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="pair"> Жұбыммен келемін
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="no"> Келе алмаймын
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit cursive" style="font-size: 1.8rem;">Жауапты жіберу</button>
+            </form>
+
+            <div class="divider" style="margin-top: 30px;"><span>♡</span></div>
+            <div class="fade-in" style="font-size: 2.2rem; margin-top: 15px;">Қуанышымызға ортақ болыңыздар!</div>
+            
+            <img src="flower.png" alt="Гүл" class="flower-center" style="width: 90px; margin-top: 25px;">
+        </div>
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            music.paused ? music.play() : music.pause();
+        }
+
+        const targetDate = new Date('September 13, 2026 19:00:00').getTime();
+        function updateTimer() {
+            const diff = targetDate - new Date().getTime();
+            if (diff > 0) {
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
